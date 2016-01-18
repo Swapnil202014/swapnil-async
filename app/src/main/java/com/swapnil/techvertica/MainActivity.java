@@ -33,7 +33,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
@@ -253,6 +256,17 @@ public class MainActivity extends AppCompatActivity
 
             is = entity.getContent();
 
+            //for get request
+            /*
+            HttpClient Client = new DefaultHttpClient();
+            String URL = "http://www.pocketdrugs.com/api.php?method=Product_filter&id="+"1"+"";
+            HttpGet httpget = new HttpGet(URL);
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            result = Client.execute(httpget, responseHandler);
+            Log.d("result from ", result);
+
+            */
+
         }
         catch(Exception e)
         {
@@ -261,6 +275,7 @@ public class MainActivity extends AppCompatActivity
 
         try
         {
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null)
@@ -269,6 +284,7 @@ public class MainActivity extends AppCompatActivity
             }
             is.close();
             result = sb.toString();
+
 
         }
         catch(Exception e)
